@@ -23,7 +23,15 @@ export const HeaderContainer = styled.div`
 
     li {
       margin-left: 20px;
-      color: white;
+    }
+    a {
+      text-decoration: none;
+      color: #7ec8e3;
+      font-size: 20px;
+    }
+    a:hover {
+      color: #7ec8e3;
+      text-decoration: line-through;
     }
   }
 `;

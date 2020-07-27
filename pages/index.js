@@ -7,6 +7,10 @@ import Header from '../components/header';
 export default function Home() {
   const left_container = useRef(null);
   const right_container = useRef(null);
+  const middle_wrapper = useRef(null);
+  const middle_overlay = useRef(null);
+  const left_overlay = useRef(null);
+  const right_overlay = useRef(null);
   const logo = useRef(null);
   const s_upper_in = useRef(null);
   const s_upper_yellow = useRef(null);
@@ -21,6 +25,8 @@ export default function Home() {
   const c_out = useRef(null);
 
   useEffect(() => {
+    // var tl = gsap.timeline();
+
     gsap.from([left_container.current], 0.8, {
       y: '-100%',
     });
@@ -28,14 +34,51 @@ export default function Home() {
       y: '100%',
     });
     gsap.fromTo(
+      [middle_wrapper.current],
+      0.8,
+      {
+        opacity: 0,
+      },
+      {
+        delay: 5,
+        opacity: 1,
+      }
+    );
+    // gsap.to(
+    //   [middle_overlay.current],
+    //   0.8,
+
+    //   {
+    //     delay: 5,
+    //     opacity: 1,
+    //   }
+    // );
+    gsap.from([left_overlay.current], 0.8, {
+      delay: 5.5,
+      y: '100%',
+    });
+    gsap.from([right_overlay.current], 0.8, {
+      delay: 5.5,
+      y: '-100%',
+    });
+    gsap.to([left_overlay.current], 0.8, {
+      delay: 5.5,
+      y: '100%',
+    });
+    gsap.to([right_overlay.current], 0.8, {
+      delay: 5.5,
+      y: '-100%',
+    });
+    gsap.fromTo(
       [logo.current],
       1,
       {
+        delay: 1,
         opacity: 1,
         // scale: 0,
       },
       {
-        delay: 4,
+        delay: 4.5,
         opacity: 0,
         // scale: 1,
       }
@@ -174,6 +217,10 @@ export default function Home() {
   }, [
     left_container,
     right_container,
+    middle_wrapper,
+    middle_overlay,
+    left_overlay,
+    right_overlay,
     logo,
     s_upper_in,
     s_upper_yellow,
@@ -197,6 +244,11 @@ export default function Home() {
         <Header />
         <div ref={left_container} className="left-container"></div>
         <div ref={right_container} className="right-container"></div>
+        <div ref={middle_wrapper} className="middle-wrapper"></div>
+        <div ref={middle_overlay} className="middle-overlay">
+          <div ref={left_overlay} className="left-overlay"></div>
+          <div ref={right_overlay} className="right-overlay"></div>
+        </div>
         <svg
           ref={logo}
           width="295px"
@@ -286,12 +338,6 @@ export default function Home() {
       </main>
 
       <style jsx>{`
-        html,
-        body {
-          margin: 0;
-          padding: 0;
-          overflow: hidden;
-        }
         main {
           height: 100vh;
           width: 100%;
@@ -312,6 +358,49 @@ export default function Home() {
           width: 100%;
           height: 100%;
           background-color: #050a30;
+        }
+        .middle-wrapper {
+          width: 500px;
+          height: 500px;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+           {
+            /* background-color: transparent; */
+          }
+          z-index: 2;
+          overflow: hidden;
+          background-image: url('../assets/images/ian-dooley-k8OCHhEymME-unsplash.png');
+          background-position: center; /* Center the image */
+          background-repeat: no-repeat; /* Do not repeat the image */
+          background-size: cover;
+          opacity: 0;
+        }
+        .middle-overlay {
+          width: 500px;
+          height: 500px;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          z-index: 3;
+          display: flex;
+          flex-direction: row;
+          justify-content: center;
+          align-items: center;
+          overflow: hidden;
+          z-index: 3;
+        }
+        .left-overlay {
+          width: 50%;
+          height: 100%;
+          background-color: #050a30;
+        }
+        .right-overlay {
+          width: 50%;
+          height: 100%;
+          background-color: #0000ff;
         }
 
         svg {
