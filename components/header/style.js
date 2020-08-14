@@ -4,10 +4,10 @@ export const HeaderContainer = styled.div`
   position: absolute;
   top: 0;
   width: 100%;
-  max-width: 1244px;
-  margin: 0 auto;
+  /* max-width: 1244px; */
+  padding: 0 10%;
   height: 80px;
-  z-index: 2;
+  z-index: 100;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -18,7 +18,9 @@ export const HeaderContainer = styled.div`
   }
   .navbar {
     display: flex;
+    flex-direction: row;
     align-items: center;
+    justify-content: center;
     list-style: none;
 
     li {
